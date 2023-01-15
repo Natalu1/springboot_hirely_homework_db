@@ -16,5 +16,11 @@ import java.util.List;
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
     private List<Employee> employees;
 
+    public String getName() {
+        return name;
+    }
 
+    public List<Employee> getEmployees() {
+        return employees;
+    }
 }

@@ -15,6 +15,22 @@ public class Employee {
     @Column(name = "full_name")
     private String fullName;
 
+    public Position getPosition() {
+        return position;
+    }
+
+    public BigDecimal getBaseSalary() {
+        return baseSalary;
+    }
+
+    public LocalDate getEmploymentDate() {
+        return employmentDate;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
     @Column(name = "email")
     private String email;
 
@@ -31,5 +47,7 @@ public class Employee {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "department_id")
     private Department department;
+
+
 
 }
