@@ -1,20 +1,22 @@
 package pl.hirely.springboot.company.model.dto;
 
+import java.math.BigDecimal;
+
 public class DepartmentSalaryDto {
 
-    private String name;
-    private double salary;
+    private String nameDepartment;
+    private BigDecimal salary;
 
-    public DepartmentSalaryDto(String name, double salary) {
-        this.name = name;
+    public DepartmentSalaryDto(String nameDepartment, BigDecimal salary) {
+        this.nameDepartment = nameDepartment;
         this.salary = salary;
     }
 
-    public String getName() {
-        return name;
+    public String getNameDepartment() {
+        return nameDepartment;
     }
 
-    public double getSalary() {
+    public BigDecimal getSalary() {
         return salary;
     }
 }

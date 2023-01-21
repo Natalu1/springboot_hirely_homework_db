@@ -14,23 +14,6 @@ public class Employee {
 
     @Column(name = "full_name")
     private String fullName;
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public BigDecimal getBaseSalary() {
-        return baseSalary;
-    }
-
-    public LocalDate getEmploymentDate() {
-        return employmentDate;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
     @Column(name = "email")
     private String email;
 
@@ -49,5 +32,47 @@ public class Employee {
     private Department department;
 
 
+    public Position getPosition() {
+        return position;
+    }
 
+    public BigDecimal getBaseSalary() {
+        return baseSalary;
+    }
+
+    public LocalDate getEmploymentDate() {
+        return employmentDate;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public void setBaseSalary(BigDecimal baseSalary) {
+        this.baseSalary = baseSalary;
+    }
+
+    public void setEmploymentDate(LocalDate employmentDate) {
+        this.employmentDate = employmentDate;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 }

@@ -16,11 +16,30 @@ import java.util.List;
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
     private List<Employee> employees;
 
+    public Department() {
+    }
+
     public String getName() {
         return name;
     }
 
     public List<Employee> getEmployees() {
         return employees;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+    public void addNewEmployee(Employee employee){
+        employees.add(employee);
+        employee.setDepartment(this);
     }
 }
