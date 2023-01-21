@@ -6,7 +6,7 @@ import pl.hirely.springboot.company.model.helper.Cleaner;
 import pl.hirely.springboot.company.model.helper.Developer;
 import pl.hirely.springboot.company.model.helper.Director;
 
-public class CalculationMapper {
+public class PositionMapper {
 
     public static Calculation map(Employee employee) {
         return switch (employee.getPosition()) {
