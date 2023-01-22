@@ -6,31 +6,31 @@ import pl.hirely.springboot.company.model.dto.NewDepartmentDto;
 import pl.hirely.springboot.company.model.dto.NewEmployeeDto;
 import pl.hirely.springboot.company.model.mapper.DepartmentMapper;
 import pl.hirely.springboot.company.model.mapper.EmployeeMapper;
-import pl.hirely.springboot.company.model.repository.DepertmentRepository;
+import pl.hirely.springboot.company.model.repository.DepartmentRepository;
 
 import javax.transaction.Transactional;
 
 @Service
 @Transactional
 public class DepartmentService {
-    private final DepertmentRepository depertmentRepository;
+    private final DepartmentRepository departmentRepository;
     private final DepartmentMapper departmentMapper;
     private final EmployeeMapper employeeMapper;
 
-    public DepartmentService(DepertmentRepository depertmentRepository, DepartmentMapper departmentMapper,
+    public DepartmentService(DepartmentRepository departmentRepository, DepartmentMapper departmentMapper,
                              EmployeeMapper employeeMapper) {
-        this.depertmentRepository = depertmentRepository;
+        this.departmentRepository = departmentRepository;
         this.departmentMapper = departmentMapper;
         this.employeeMapper = employeeMapper;
     }
 
     public void addNewDepartment(NewDepartmentDto newDepartmentDto){
         Department department = departmentMapper.toEntity(newDepartmentDto);
-        depertmentRepository.save(department);
+        departmentRepository.save(department);
     }
 
     public void addNewEmployee(Long departmentId, NewEmployeeDto newEmployeeDto) {
-        depertmentRepository.findById(departmentId).ifPresentOrElse(department -> addEmployee(department, newEmployeeDto),
+        departmentRepository.findById(departmentId).ifPresentOrElse(department -> addEmployee(department, newEmployeeDto),
                 this::throwNotFoundException);
     }
 

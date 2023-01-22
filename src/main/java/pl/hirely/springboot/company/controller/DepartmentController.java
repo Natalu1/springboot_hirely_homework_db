@@ -16,14 +16,15 @@ public class DepartmentController {
     private final DepartmentService departmentService;
     private final CalculationService calculationService;
 
-    public DepartmentController(DepartmentService departmentService, CalculationService calculationService) {
+    public DepartmentController(DepartmentService departmentService,
+                                CalculationService calculationService) {
         this.departmentService = departmentService;
         this.calculationService = calculationService;
     }
 
 
     @GetMapping("/salary")
-    public List<DepartmentSalaryDto> calculate(){
+    public List<DepartmentSalaryDto> CalculateSumSalaryDepartment(){
         return calculationService.calculate();
     }
 

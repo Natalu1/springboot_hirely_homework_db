@@ -5,8 +5,7 @@ import pl.hirely.springboot.company.model.domain.Department;
 import pl.hirely.springboot.company.model.dto.DepartmentSalaryDto;
 import pl.hirely.springboot.company.model.helper.Calculation;
 import pl.hirely.springboot.company.model.mapper.PositionMapper;
-import pl.hirely.springboot.company.model.repository.DepertmentRepository;
-import pl.hirely.springboot.company.model.repository.EmployeeRepository;
+import pl.hirely.springboot.company.model.repository.DepartmentRepository;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -15,18 +14,16 @@ import java.util.List;
 @Service
 public class CalculationService {
 
-    private final EmployeeRepository employeeRepository;
-    private final DepertmentRepository depertmentRepository;
+    private final DepartmentRepository departmentRepository;
 
-    public CalculationService(EmployeeRepository employeeRepository, DepertmentRepository depertmentRepository) {
-        this.employeeRepository = employeeRepository;
-        this.depertmentRepository = depertmentRepository;
+    public CalculationService(DepartmentRepository departmentRepository) {
+        this.departmentRepository = departmentRepository;
     }
 
     public List<DepartmentSalaryDto> calculate() {
         List<DepartmentSalaryDto> departmentSalaryDtos = new ArrayList<>();
 
-        depertmentRepository.findWithEmployees()
+        departmentRepository.findWithEmployees()
                 .forEach(department -> {
                     departmentSalaryDtos.add(new DepartmentSalaryDto(department.getName(),
                             getSumByDepartment(department)));

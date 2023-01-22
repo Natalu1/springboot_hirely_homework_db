@@ -13,7 +13,7 @@ public class Developer extends Calculation {
     @Override
     public BigDecimal calculateSalary() {
         return calculateEmploymentYears() > 0
-                ? salary.add(salary.multiply(new BigDecimal("1.2")))
+                ? salary.multiply(new BigDecimal("1.2"))
                 : salary;
     }
 

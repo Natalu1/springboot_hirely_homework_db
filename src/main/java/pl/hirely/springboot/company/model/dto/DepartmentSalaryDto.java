@@ -7,6 +7,8 @@ public class DepartmentSalaryDto {
     private String nameDepartment;
     private BigDecimal salary;
 
+
+
     public DepartmentSalaryDto(String nameDepartment, BigDecimal salary) {
         this.nameDepartment = nameDepartment;
         this.salary = salary;
@@ -18,5 +20,13 @@ public class DepartmentSalaryDto {
 
     public BigDecimal getSalary() {
         return salary;
+    }
+
+    public void setNameDepartment(String nameDepartment) {
+        this.nameDepartment = nameDepartment;
+    }
+
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
     }
 }
