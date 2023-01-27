@@ -3,7 +3,7 @@ package pl.hirely.springboot.company.model.helper;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Cleaner extends Calculation {
+public class Cleaner extends Staff {
 
 
     public Cleaner(BigDecimal salary, LocalDate employmentDate) {

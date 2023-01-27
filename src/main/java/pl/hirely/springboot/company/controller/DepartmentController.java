@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.hirely.springboot.company.model.dto.DepartmentSalaryDto;
 import pl.hirely.springboot.company.model.dto.NewDepartmentDto;
 import pl.hirely.springboot.company.model.dto.NewEmployeeDto;
-import pl.hirely.springboot.company.model.service.CalculationService;
+import pl.hirely.springboot.company.model.service.SalaryCalculationService;
 import pl.hirely.springboot.company.model.service.DepartmentService;
 
 import javax.transaction.Transactional;
@@ -14,18 +14,18 @@ import java.util.List;
 @RequestMapping("/department")
 public class DepartmentController {
     private final DepartmentService departmentService;
-    private final CalculationService calculationService;
+    private final SalaryCalculationService salaryCalculationService;
 
     public DepartmentController(DepartmentService departmentService,
-                                CalculationService calculationService) {
+                                SalaryCalculationService salaryCalculationService) {
         this.departmentService = departmentService;
-        this.calculationService = calculationService;
+        this.salaryCalculationService = salaryCalculationService;
     }
 
 
     @GetMapping("/salary")
-    public List<DepartmentSalaryDto> CalculateSumSalaryDepartment(){
-        return calculationService.calculate();
+    public List<DepartmentSalaryDto> сalculateSumSalaryDepartment(){
+        return salaryCalculationService.calculateSalaryByDepartment();
     }
 
     @PostMapping

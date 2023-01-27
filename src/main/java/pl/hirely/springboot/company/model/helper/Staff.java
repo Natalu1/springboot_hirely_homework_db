@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Period;
 
-public abstract class Calculation {
+public abstract class Staff {
     protected BigDecimal salary;
     protected LocalDate employmentDate;
 
-    public Calculation(BigDecimal salary, LocalDate employmentDate) {
+    public Staff(BigDecimal salary, LocalDate employmentDate) {
         this.salary = salary;
         this.employmentDate = employmentDate;
     }

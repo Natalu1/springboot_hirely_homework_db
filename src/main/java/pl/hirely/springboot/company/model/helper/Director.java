@@ -3,7 +3,7 @@ package pl.hirely.springboot.company.model.helper;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Director extends Calculation {
+public class Director extends Staff {
 
 
     public Director(BigDecimal salary, LocalDate employmentDate) {

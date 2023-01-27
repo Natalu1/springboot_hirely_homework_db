@@ -17,7 +17,9 @@ class EmployeeRepositorySpec extends Specification {
         def actual = employeeRepository.findAll()
 
         then:
-        actual.size() == 2
-        actual*.fullName as Set == ['Roman Romanowski', 'Tomasz Tomaszewski'] as Set
+        actual.size() == 10
+        actual*.fullName as Set == ['Roman Romanowski', 'Tomasz Tomaszewski', 'Adam Kowalski', 'Max Potter',
+                                    'Kolin Dark', 'Eva Mentor', 'Roman Petrowski', 'Tomasz Igielski',
+                                    'Greg Leonowski', 'Alla Bilyk'] as Set
     }
 }

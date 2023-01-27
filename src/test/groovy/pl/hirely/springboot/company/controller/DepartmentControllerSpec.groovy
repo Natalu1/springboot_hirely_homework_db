@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.test.web.servlet.MockMvc
 import pl.hirely.springboot.company.model.dto.DepartmentSalaryDto
-import pl.hirely.springboot.company.model.service.CalculationService
+import pl.hirely.springboot.company.model.service.SalaryCalculationService
 import pl.hirely.springboot.company.model.service.DepartmentService
 import spock.lang.Specification
 
@@ -21,15 +21,15 @@ class DepartmentControllerSpec extends Specification {
     private MockMvc mockMvc
 
     @SpringBean
-    private CalculationService calculationService = Mock()
+    private SalaryCalculationService calculationService = Mock()
     @SpringBean
     private DepartmentService departmentService = Mock()
 
     def "shouldCalculateSumSalaryDepartment"() {
         given:
-        calculationService.calculate() >> [new DepartmentSalaryDto("IT", 230000 as BigDecimal),
-                                           new DepartmentSalaryDto("IBM", 125800 as BigDecimal),
-                                           new DepartmentSalaryDto("GVC", 44000 as BigDecimal)]
+        calculationService.calculateSalaryByDepartment() >> [new DepartmentSalaryDto("IT", 230000 as BigDecimal),
+                                                             new DepartmentSalaryDto("IBM", 125800 as BigDecimal),
+                                                             new DepartmentSalaryDto("GVC", 44000 as BigDecimal)]
         when:
 
         def response = mockMvc.perform(get("/department/salary"))
