@@ -27,6 +27,10 @@ public class DepartmentController {
     public List<DepartmentSalaryDto> сalculateSumSalaryDepartment(){
         return salaryCalculationService.calculateSalaryByDepartment();
     }
+    @GetMapping("/max")
+    public List<DepartmentSalaryDto> maxSalaryDepartment(){
+        return salaryCalculationService.maxSalaryDepartment();
+    }
 
     @PostMapping
     public void addNewDepartment(@RequestBody NewDepartmentDto newDepartmentDto){
