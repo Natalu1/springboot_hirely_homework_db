@@ -49,4 +49,31 @@ class DepartmentControllerSpec extends Specification {
 
     }
 
+
+
+//    def "should return 200 with correct body"() {
+//        given:
+//        departmentService.getAmountOfDepartmentSalary() >> [
+//                new DepartmentSalaryAmountDto(
+//                        departmentName: "department1",
+//                        salaryAmount: BigDecimal.valueOf(900.59)),
+//                new DepartmentSalaryAmountDto(
+//                        departmentName: "department2",
+//                        salaryAmount: BigDecimal.valueOf(0.34)
+//                )]
+//
+//        when:
+//        def response = mockMvc.perform(get("/department/salary-amount"))
+//
+//        then:
+//        response
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath('$.length()').value(2))
+//                .andExpect(jsonPath('$[0].departmentName').value("department1"))
+//                .andExpect(jsonPath('$[0].salaryAmount').value("900.59"))
+//                .andExpect(jsonPath('$[1].departmentName').value("department2"))
+//                .andExpect(jsonPath('$[1].salaryAmount').value("0.34"))
+//    }
+//}
+
 }
