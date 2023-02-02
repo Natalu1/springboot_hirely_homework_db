@@ -17,4 +17,10 @@ public class EmployeeMapper {
         employee.setEmploymentDate(LocalDate.parse(newEmployeeDto.getEmploymentDate()));
         return employee;
     }
+    public NewEmployeeDto fromEntity(Employee employee){
+        NewEmployeeDto newEmployeeDto = new NewEmployeeDto();
+        newEmployeeDto.setFullName(employee.getFullName());
+        newEmployeeDto.setPosition(employee.getPosition());
+        return newEmployeeDto;
+    }
 }

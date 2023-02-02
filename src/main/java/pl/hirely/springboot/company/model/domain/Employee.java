@@ -27,10 +27,13 @@ public class Employee {
     @Column(name = "employment_date")
     private LocalDate employmentDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "department_id")
+    @ManyToOne
+    @JoinColumn(name = "department_id", nullable = false)
     private Department department;
 
+    public String getFullName() {
+        return fullName;
+    }
 
     public Position getPosition() {
         return position;

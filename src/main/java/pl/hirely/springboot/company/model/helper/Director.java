@@ -15,6 +15,9 @@ public class Director extends Staff {
         return salary.add(salary.multiply(new BigDecimal("0.1"))
                 .multiply(new BigDecimal(calculateEmploymentYears())));
     }
-
+    @Override
+    public BigDecimal calculateTotalIncome() {
+        return null;
+    }
 
 }

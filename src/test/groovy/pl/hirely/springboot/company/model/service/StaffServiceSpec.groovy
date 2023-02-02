@@ -3,8 +3,11 @@ package pl.hirely.springboot.company.model.service
 
 import pl.hirely.springboot.company.model.domain.Department
 import pl.hirely.springboot.company.model.domain.Employee
+import pl.hirely.springboot.company.model.domain.Position
 import pl.hirely.springboot.company.model.dto.DepartmentSalaryDto
+import pl.hirely.springboot.company.model.mapper.StaffFactory
 import pl.hirely.springboot.company.model.repository.DepartmentRepository
+import pl.hirely.springboot.company.model.repository.EmployeeRepository
 import spock.lang.Specification
 import spock.lang.Subject
 
@@ -12,9 +15,11 @@ import java.time.LocalDate
 
 class StaffServiceSpec extends Specification {
     private DepartmentRepository departmentRepository = Mock()
+    private StaffFactory staffFactory = new StaffFactory()
+    private EmployeeRepository employeeRepository = Mock()
 
     @Subject
-    private SalaryCalculationService calculationService = new SalaryCalculationService(departmentRepository)
+    private SalaryCalculationService calculationService = new SalaryCalculationService(departmentRepository, employeeRepository, staffFactory)
 
     def "shouldCalculateSumSalaryDepartment"() {
         given:
@@ -36,13 +41,41 @@ class StaffServiceSpec extends Specification {
         dep2.setEmployees(List.of(developer1, developer2))
 
         departmentRepository.findWithEmployees() >> List.of(dep1, dep2)
-
         when:
         def actual = calculationService.calculateSalaryByDepartment()
 
         then:
         actual.size() == 2
-        actual.find({it.nameDepartment == 'Administration'})  == new DepartmentSalaryDto( 'Administration', 35000.0)
-        actual.find({it.nameDepartment == 'Development'})  == new DepartmentSalaryDto( 'Development', 27000.0)
+        actual.find({it.nameDepartment == 'Administration'}).salary  ==  35000.0
+        actual.find({it.nameDepartment == 'Development'}).salary  == 27000.0
+    }
+
+    def "should property calculate Employees income"() {
+        def now = LocalDate.now()
+        def departmentId = 1L
+        def department1Employee1 = new Employee(
+                fullName: "Den Nowak",
+                baseSalary: 1000,
+                employmentDate: LocalDate.now().minusYears(1),
+                position: Position.CLEANER) //salary = 1000
+
+        def department1Employee2 = new Employee(
+                fullName: "Adam Kowal",
+                baseSalary: 15000,
+                employmentDate: now.minusYears(2),
+                position: Position.DEVELOPER) //salary = 18000
+
+
+        employeeRepository.findAllByPositionAndDepartmentId(Position.CLEANER, 1L) >> [department1Employee1]
+        employeeRepository.findAllByPositionAndDepartmentId(Position.DEVELOPER, 1L) >> [department1Employee2]
+
+        when:
+        def actual = calculationService.getEmployeesIncome(1L, Position.CLEANER)
+        def actual1 = calculationService.getEmployeesIncome(1L, Position.DEVELOPER)
+
+        then:
+        actual.find(dto->dto.fullName == "Den Nowak").totalIncome == 12000
+        actual1.find(dto->dto.fullName == "Adam Kowal").totalIncome == 396000
+
     }
 }

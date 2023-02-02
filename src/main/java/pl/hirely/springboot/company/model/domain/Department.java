@@ -13,7 +13,7 @@ import java.util.List;
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "department")
     private List<Employee> employees;
 
     public Department() {

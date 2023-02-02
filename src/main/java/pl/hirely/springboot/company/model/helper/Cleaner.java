@@ -15,5 +15,8 @@ public class Cleaner extends Staff {
         return salary;
     }
 
-
+    @Override
+    public BigDecimal calculateTotalIncome() {
+        return salary.multiply(BigDecimal.valueOf(getNumberOfEmploymentMonths()));
+    }
 }

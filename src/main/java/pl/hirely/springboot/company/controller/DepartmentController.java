@@ -1,6 +1,7 @@
 package pl.hirely.springboot.company.controller;
 
 import org.springframework.web.bind.annotation.*;
+import pl.hirely.springboot.company.model.domain.Position;
 import pl.hirely.springboot.company.model.dto.DepartmentSalaryDto;
 import pl.hirely.springboot.company.model.dto.NewDepartmentDto;
 import pl.hirely.springboot.company.model.dto.NewEmployeeDto;
@@ -36,10 +37,9 @@ public class DepartmentController {
     public void addNewDepartment(@RequestBody NewDepartmentDto newDepartmentDto){
         departmentService.addNewDepartment(newDepartmentDto);
     }
-    @PostMapping("/{id}/employee")
-    @Transactional
-    public void addNewEmployees(@PathVariable("id") Long id,
-                                @RequestBody NewEmployeeDto newEmployeeDto){
-        departmentService.addNewEmployee(id, newEmployeeDto);
+    @GetMapping("/position")
+    public List<NewEmployeeDto> findEmployeeByPosition(@PathVariable ("position") Position position){
+        return departmentService.getEmployeesByPosition(position);
     }
+
 }
